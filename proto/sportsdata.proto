@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package sportsdata;
+
+service SportsService {
+  rpc FetchTeams(Empty) returns (TeamList);
+  rpc FetchPlayers(Empty) returns (PlayerList);
+  rpc FetchGames(Empty) returns (GameList);
+}
+
+message Empty {}
+
+message Team {
+  int32 id = 1;
+  string name = 2;
+  string city = 3;
+  string abbreviation = 4;
+  string conference = 5;
+  string division = 6;
+}
+
+message Player {
+  int32 id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  int32 team_id = 4;
+  string position = 5;
+  string height = 6;
+  int32 weight = 7;
+  string college = 8;
+  string birth_date = 9;
+}
+
+message Game {
+  int32 id = 1;
+  string season = 2;
+  string date = 3;
+  int32 home_team_id = 4;
+  int32 away_team_id = 5;
+  int32 home_team_score = 6;
+  int32 away_team_score = 7;
+  string status = 8;
+}
+
+message TeamList {
+  repeated Team teams = 1;
+}
+
+message PlayerList {
+  repeated Player players = 1;
+}
+
+message GameList {
+  repeated Game games = 1;
+}
